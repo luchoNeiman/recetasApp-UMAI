@@ -1,19 +1,19 @@
-const menuItems = [
+const navItems = [
   {
     id: 1,
-    name: "Home",
+    name: "Inicio",
     link: "/",
   },
   {
     id: 2,
-    name: "About",
+    name: "Acerca de",
     link: "/about",
   },
   {
     id: 3,
-    name: "Contact",
+    name: "Contacto",
     link: "/contact",
   },
 ];
 
-export default menuItems;
+export default navItems;
