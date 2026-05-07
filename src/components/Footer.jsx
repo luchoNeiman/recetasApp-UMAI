@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 const Footer = () => {
@@ -5,6 +6,15 @@ const Footer = () => {
     
     return (
         <footer className="mt-auto py-8 border-t" style={{ backgroundColor: "#1f2937", borderColor: "#374151" }}>
+            <style jsx>{`
+                a {
+                    color: #dbeafe;
+                    transition: color 0.2s duration-200;
+                }
+                a:hover {
+                    color: #fbbf24;
+                }
+            `}</style>
             <div className="container mx-auto px-6 sm:px-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     <div>
@@ -15,26 +25,10 @@ const Footer = () => {
                         <h3 className="font-bold text-lg mb-4" style={{ color: "#ffffff" }}>Enlaces</h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link 
-                                    href="/" 
-                                    className="transition-colors duration-200"
-                                    style={{ color: "#dbeafe" }}
-                                    onMouseEnter={(e) => e.target.style.color = "#fbbf24"}
-                                    onMouseLeave={(e) => e.target.style.color = "#dbeafe"}
-                                >
-                                    Inicio
-                                </Link>
+                                <Link href="/">Inicio</Link>
                             </li>
                             <li>
-                                <Link 
-                                    href="/about" 
-                                    className="transition-colors duration-200"
-                                    style={{ color: "#dbeafe" }}
-                                    onMouseEnter={(e) => e.target.style.color = "#fbbf24"}
-                                    onMouseLeave={(e) => e.target.style.color = "#dbeafe"}
-                                >
-                                    Acerca de
-                                </Link>
+                                <Link href="/about">Acerca de</Link>
                             </li>
                         </ul>
                     </nav>

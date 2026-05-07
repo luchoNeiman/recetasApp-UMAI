@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
     return (
-        <nav className="navbar-gradient sticky top-0 z-50 flex items-center justify-between px-6 py-4 shadow-md sm:px-10">
+        <nav className="navbar-gradient sticky top-0 z-50 flex items-center justify-between px-6 py-4 shadow-md sm:px-10" style={{ background: 'linear-gradient(180deg, #fff8ef 0%, #ffffff 100%)' }}>
             <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <Image
                     src="/logos/logo-recetasApp.png"
@@ -22,13 +22,8 @@ const Navbar = () => {
                     <li key={item.id}>
                         <Link 
                             href={item.link}
-                            className="transition-colors duration-200"
-                            style={{ 
-                                color: "#575757",
-                                textDecoration: "none"
-                            }}
-                            onMouseEnter={(e) => e.target.style.color = "#fdebd6"}
-                            onMouseLeave={(e) => e.target.style.color = "#575757"}
+                            className="transition-colors duration-200 hover:text-orange-600"
+                            style={{ color: "#575757" }}
                         >
                             {item.name}
                         </Link>
