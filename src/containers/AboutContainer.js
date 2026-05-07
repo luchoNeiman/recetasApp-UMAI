@@ -34,14 +34,6 @@ const AboutContainer = () => {
             </li>
           </ul>
         </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Contacto</h2>
-          <p className="text-gray-300">
-            ¿Tienes preguntas o sugerencias? 
-            <a href="/contact" className="text-amber-400 hover:text-amber-300 ml-1">Ponte en contacto con nosotros</a>
-          </p>
-        </section>
       </div>
     </main>
   );

@@ -9,11 +9,6 @@ const navItems = [
     name: "Acerca de",
     link: "/about",
   },
-  {
-    id: 3,
-    name: "Contacto",
-    link: "/contact",
-  },
 ];
 
 export default navItems;

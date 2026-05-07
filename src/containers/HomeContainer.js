@@ -1,44 +1,41 @@
-'use client'
-
 import CardsGrids from "@/components/CardsGrids";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import HeroSection from "@/components/HeroSection";
 
-const HomeContainer = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(false);
+const HomeContainer = async () => {
+  let items = [];
+  let error = false;
+  let errorMsg = "";
 
-  const handleGetItems = async () => {
-    try {
-      const response = await axios.get("https://dummyjson.com/recipes?limit=0");
-      const data = response.data.recipes;
-      console.log(data);
-      setItems(data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Hubo un error", error);
-      setLoading(false);
-      setError(true);
-      setErrorMsg("hubo un error al cargar los items");
+  try {
+    const response = await fetch("https://dummyjson.com/recipes?limit=0", {
+      next: { revalidate: 3600 } // Revalidate every hour
+    });
+    
+    if (!response.ok) {
+      throw new Error("Error fetching recipes");
     }
-  };
-
-
-  useEffect(() => {
-    handleGetItems();
-  }, []); //el array de dependencias vacío hace que el useEffect se ejecute solo una vez, cuando el componente se monta por primera vez. Esto es útil para cargar datos o realizar acciones que solo necesitan ocurrir una vez durante el ciclo de vida del componente.
+    
+    const data = await response.json();
+    items = data.recipes || [];
+  } catch (err) {
+    console.error("Error loading recipes:", err);
+    error = true;
+    errorMsg = "Hubo un error al cargar las recetas. Por favor, intenta más tarde.";
+  }
 
   return (
-    <div>
-      <section className="bg-slate-900">
-        {!loading && <CardsGrids items={items} title={"Recetas App"}/>}
-        {loading && <div>LOADING....</div>}
-        {error !== '' && <div>{errorMsg}</div>}
+    <main>
+      <HeroSection />
+      <section className="bg-gradient-to-b from-slate-50 to-white">
+        {!error && <CardsGrids items={items} title={"Recetas App"} />}
+        {error && (
+          <div className="max-w-7xl mx-auto px-4 py-12 text-center">
+            <p className="text-lg text-red-600 font-semibold">{errorMsg}</p>
+          </div>
+        )}
       </section>
-    </div>
-  )
-}
+    </main>
+  );
+};
 
-export default HomeContainer
+export default HomeContainer;

@@ -1,98 +1,58 @@
-"use client"; //sirve para indicar que este componente se renderiza en el cliente, no en el servidor
-import { useState } from "react";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import RecipeActions from "./RecipeActions";
 
-const Card = ({ id, name, rating, image }) => {
-  const [like, setLike] = useState(0);
-  const [cardColor, setCardColor] = useState("light");
-  const [showRanking, setShowRanking] = useState(false);
-
-  const handleLikes = () => {
-    if (like < 5 && cardColor === "dark") {
-      setLike(like + 1);
-    }
-  };
-
-  const handleColor = () => {
-    setCardColor(cardColor === "light" ? "dark" : "light");
-  };
-
-  const handleShowRanking = () => {
-    setShowRanking(!showRanking);
-  };
-
+const Card = ({ id, name, rating, image, cuisine, difficulty }) => {
   return (
     <div
-      className={`group relative overflow-hidden rounded-3xl border p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl ${
-        cardColor === "dark"
-          ? "border-slate-800 bg-slate-950 text-white shadow-slate-950/30"
-          : "border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100 text-slate-900 shadow-slate-200/80"
-      }`}
+      className="group relative overflow-hidden rounded-3xl border bg-white transition duration-300 hover:shadow-2xl hover:-translate-y-1"
+      style={{ borderColor: "#e5e7eb" }}
     >
-      <Image src={image} width={200} height={500} alt={name} />
+      {/* Imagen */}
+      <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+        {/* Badge de categoría */}
+        {cuisine && (
+          <div
+            className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold text-white"
+            style={{ backgroundColor: "#9a3412" }}
+          >
+            {cuisine}
+          </div>
+        )}
+      </div>
 
-      <h3
-        className={`mb-3 text-2xl font-black tracking-tight ${
-          cardColor === "dark" ? "text-white" : "text-slate-900"
-        }`}
-      >
-        {name}
-      </h3>
-
-      {showRanking && (
-        <p className="mb-4 text-sm leading-6 text-black">
-          El Rating es de {rating}
-        </p>
-      )}
-
-      {!showRanking && (
-        <p className="mb-4 text-sm leading-6 text-black">Ver ranking</p>
-      )}
-
-      <button
-        className={`mr-2 mb-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ${
-          cardColor === "dark"
-            ? "bg-white text-slate-950 hover:bg-slate-200"
-            : "bg-slate-900 text-white hover:bg-slate-700"
-        }`}
-        onClick={handleLikes}
-      >
-        Like {like}
-      </button>
-
-      <button
-        className={`mr-2 mb-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ${
-          cardColor === "dark"
-            ? "bg-slate-800 text-white hover:bg-slate-700"
-            : "bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-100"
-        }`}
-        onClick={handleColor}
-      >
-        Switch color
-      </button>
-
-      <button
-        className={`mb-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ${
-          cardColor === "dark"
-            ? "bg-slate-800 text-white hover:bg-slate-700"
-            : "bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-100"
-        }`}
-        onClick={handleShowRanking}
-      >
-        Show Ranking
-      </button>
-
-      <div className="flex justify-center items-center mt-10">
-        <Link
-          className={`mr-2 mb-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 ${
-            cardColor === "dark"
-              ? "bg-slate-800 text-white hover:bg-slate-700"
-              : "bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-100"
-          }`}
-          href={`/recipe/${id}`}
+      {/* Contenido */}
+      <div className="p-5">
+        <h3
+          className="mb-2 text-xl font-black tracking-tight line-clamp-2"
+          style={{ color: "#7c2d12" }}
         >
-          Ver receta
+          {name}
+        </h3>
+
+        {/* Meta Info */}
+        <div className="mb-4 flex gap-4 text-sm" style={{ color: "#575757" }}>
+          {difficulty && <span>🔪 {difficulty}</span>}
+        </div>
+
+        {/* Acciones interactivas */}
+        <RecipeActions id={id} initialRating={rating} />
+
+        {/* Link a detalles */}
+        <Link
+          href={`/recipe/${id}`}
+          className="mt-4 block w-full text-center py-2 rounded-lg font-semibold transition-colors duration-200 text-white"
+          style={{ backgroundColor: "#9a3412" }}
+        >
+          Ver Receta
         </Link>
       </div>
     </div>

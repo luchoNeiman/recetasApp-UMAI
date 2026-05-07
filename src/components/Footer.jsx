@@ -4,29 +4,48 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     
     return (
-        <footer className="mt-auto bg-slate-950 text-white py-8 border-t border-slate-800">
+        <footer className="mt-auto py-8 border-t" style={{ backgroundColor: "#1f2937", borderColor: "#374151" }}>
             <div className="container mx-auto px-6 sm:px-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     <div>
-                        <h3 className="font-bold text-lg mb-4">Recetas App</h3>
-                        <p className="text-gray-400 text-sm">Explora miles de recetas deliciosas de diferentes cocinas del mundo.</p>
+                        <h3 className="font-bold text-lg mb-4" style={{ color: "#ffffff" }}>Recetas App</h3>
+                        <p className="text-sm" style={{ color: "#d1d5db" }}>Explora miles de recetas deliciosas de diferentes cocinas del mundo.</p>
                     </div>
                     <nav>
-                        <h3 className="font-bold text-lg mb-4">Enlaces</h3>
+                        <h3 className="font-bold text-lg mb-4" style={{ color: "#ffffff" }}>Enlaces</h3>
                         <ul className="space-y-2">
-                            <li><Link href="/" className="text-gray-400 hover:text-amber-400 transition-colors">Home</Link></li>
-                            <li><Link href="/about" className="text-gray-400 hover:text-amber-400 transition-colors">Acerca de</Link></li>
-                            <li><Link href="/contact" className="text-gray-400 hover:text-amber-400 transition-colors">Contacto</Link></li>
+                            <li>
+                                <Link 
+                                    href="/" 
+                                    className="transition-colors duration-200"
+                                    style={{ color: "#dbeafe" }}
+                                    onMouseEnter={(e) => e.target.style.color = "#fbbf24"}
+                                    onMouseLeave={(e) => e.target.style.color = "#dbeafe"}
+                                >
+                                    Inicio
+                                </Link>
+                            </li>
+                            <li>
+                                <Link 
+                                    href="/about" 
+                                    className="transition-colors duration-200"
+                                    style={{ color: "#dbeafe" }}
+                                    onMouseEnter={(e) => e.target.style.color = "#fbbf24"}
+                                    onMouseLeave={(e) => e.target.style.color = "#dbeafe"}
+                                >
+                                    Acerca de
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                     <div>
-                        <h3 className="font-bold text-lg mb-4">Información</h3>
-                        <p className="text-gray-400 text-sm">Email: info@recetasapp.com</p>
-                        <p className="text-gray-400 text-sm mt-2">Teléfono: +34 000 000 000</p>
+                        <h3 className="font-bold text-lg mb-4" style={{ color: "#ffffff" }}>Información</h3>
+                        <p className="text-sm" style={{ color: "#d1d5db" }}>Email: info@recetasapp.com</p>
+                        <p className="text-sm mt-2" style={{ color: "#d1d5db" }}>Teléfono: +34 000 000 000</p>
                     </div>
                 </div>
-                <div className="border-t border-slate-800 pt-6 text-center">
-                    <p className="text-gray-400 text-sm">&copy; {currentYear} Recetas App. Todos los derechos reservados.</p>
+                <div className="pt-6 text-center" style={{ borderTop: "1px solid #374151" }}>
+                    <p className="text-sm" style={{ color: "#d1d5db" }}>&copy; {currentYear} Recetas App. Todos los derechos reservados.</p>
                 </div>
             </div>
         </footer>
