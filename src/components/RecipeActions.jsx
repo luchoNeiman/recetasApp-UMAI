@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { FaHeart, FaStar } from "react-icons/fa";
 
-const RecipeActions = ({ id, initialRating }) => {
+const RecipeActions = ({ initialRating, accentColor = "#9a3412" }) => {
   const [likes, setLikes] = useState(0);
   const [showRating, setShowRating] = useState(false);
 
@@ -17,26 +18,26 @@ const RecipeActions = ({ id, initialRating }) => {
       <div className="flex gap-2 flex-wrap">
         <button
           onClick={handleLike}
-          className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
           style={{
-            backgroundColor: likes > 0 ? "#9a3412" : "#f3f4f6",
+            backgroundColor: likes > 0 ? accentColor : "#f3f4f6",
             color: likes > 0 ? "#ffffff" : "#1f2937",
-            border: `2px solid ${likes > 0 ? "#9a3412" : "#e5e7eb"}`
+            border: `2px solid ${likes > 0 ? accentColor : "#e5e7eb"}`,
           }}
         >
-          ❤️ {likes}
+          <FaHeart className="text-sm" /> {likes}
         </button>
 
         <button
           onClick={() => setShowRating(!showRating)}
-          className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
           style={{
-            backgroundColor: showRating ? "#9a3412" : "#f3f4f6",
+            backgroundColor: showRating ? accentColor : "#f3f4f6",
             color: showRating ? "#ffffff" : "#1f2937",
-            border: `2px solid ${showRating ? "#9a3412" : "#e5e7eb"}`
+            border: `2px solid ${showRating ? accentColor : "#e5e7eb"}`,
           }}
         >
-          ⭐ Rating
+          <FaStar className="text-sm" /> Rating
         </button>
       </div>
 
