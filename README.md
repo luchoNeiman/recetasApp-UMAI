@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+# USO DE IA:
+-Saltos de linea dinamicos: 
+    const instructions = Array.isArray(recipe.instructions)
+        ? recipe.instructions
+        : String(recipe.instructions || "")
+            .split("\n") // Divide por saltos de línea
+            .filter(Boolean);
+
+-Pasar mis estilos a Tailwind css y de paso aprender cada linea de tailwind con ayuda de la IA que es algo que no vimos mucho en clase.
+
+-me ayude con la IA con el tema de theme para los colores de las categorias. Era un re quilombo. 

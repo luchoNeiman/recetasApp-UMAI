@@ -46,7 +46,7 @@ const RecipeDetailPage = async ({ params }) => {
   const instructions = Array.isArray(recipe.instructions)
     ? recipe.instructions
     : String(recipe.instructions || "")
-        .split("\n")
+        .split("\n") // Divide por saltos de línea
         .filter(Boolean);
 
   const totalMinutes =
