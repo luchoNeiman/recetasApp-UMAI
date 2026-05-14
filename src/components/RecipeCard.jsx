@@ -9,13 +9,7 @@ const RecipeCard = ({
 }) => {
   return (
     <article
-      className={[
-        "bg-white border border-[#22222214] rounded-[1.5rem]",
-        "shadow-[0_20px_40px_rgba(17,24,39,0.08)] overflow-hidden",
-        "transition-all duration-[180ms] hover:-translate-y-1 h-full",
-        hoverShadow,
-        "flex flex-col",
-      ].join(" ")}
+      className={`flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#22222214] bg-white shadow-[0_20px_40px_rgba(17,24,39,0.08)] transition-all duration-[180ms] hover:-translate-y-1 ${hoverShadow}`}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image

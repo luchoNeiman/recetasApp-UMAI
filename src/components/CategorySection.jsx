@@ -1,31 +1,11 @@
 import RecipeCard from "@/components/RecipeCard";
 
-// Identidad visual por variante de temática
-const THEME_VARIANTS = {
-  orange: {
-    kicker: "text-[#b45309]",
-    badge: "bg-[#fff5e8] text-[#b45309] border border-[#b4530947]",
-    hoverShadow: "hover:shadow-[0_24px_48px_rgba(180,83,9,0.18)]",
-  },
-  green: {
-    kicker: "text-[#0f766e]",
-    badge: "bg-[#ecfeff] text-[#0f766e] border border-[#0f766e4d]",
-    hoverShadow: "hover:shadow-[0_24px_48px_rgba(15,118,110,0.2)]",
-  },
-  red: {
-    kicker: "text-[#b91c1c]",
-    badge: "bg-[#fff1f1] text-[#b91c1c] border border-[#b91c1c47]",
-    hoverShadow: "hover:shadow-[0_24px_48px_rgba(185,28,28,0.18)]",
-  },
-  default: {
-    kicker: "text-[#7c2d12]",
-    badge: "bg-[#fef2f2] text-[#7c2d12] border border-[#7c2d1247]",
-    hoverShadow: "hover:shadow-[0_24px_48px_rgba(124,45,18,0.18)]",
-  },
-};
-
 const CategorySection = ({ cuisine, recipes, theme }) => {
-  const tv = THEME_VARIANTS[theme?.variant] ?? THEME_VARIANTS.default;
+  const kickerClass = theme?.kickerClass || "text-[#7c2d12]";
+  const badgeClass =
+    theme?.badgeClass || "bg-[#fef2f2] text-[#7c2d12] border border-[#7c2d1247]";
+  const hoverShadow =
+    theme?.hoverShadow || "hover:shadow-[0_24px_48px_rgba(124,45,18,0.18)]";
 
   return (
     <section
@@ -35,7 +15,7 @@ const CategorySection = ({ cuisine, recipes, theme }) => {
       {/* Cabecera de categoría */}
       <header className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5">
         <p
-          className={`mb-2 text-sm font-semibold uppercase tracking-[0.16em] ${tv.kicker}`}
+          className={`mb-2 text-sm font-semibold uppercase tracking-[0.16em] ${kickerClass}`}
         >
           Colección destacada
         </p>
@@ -48,7 +28,7 @@ const CategorySection = ({ cuisine, recipes, theme }) => {
         <p className="mt-2 max-w-3xl text-[#575757]">{theme?.description}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <span
-            className={`rounded-full px-3 py-1 text-xs font-semibold ${tv.badge}`}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${badgeClass}`}
           >
             {recipes.length} recetas
           </span>
@@ -67,8 +47,8 @@ const CategorySection = ({ cuisine, recipes, theme }) => {
           <li key={recipe.id}>
             <RecipeCard
               recipe={recipe}
-              accentColor={theme?.badge ?? "#9a3412"}
-              hoverShadow={tv.hoverShadow}
+              accentColor={theme?.accentColor ?? "#9a3412"}
+              hoverShadow={hoverShadow}
             />
           </li>
         ))}

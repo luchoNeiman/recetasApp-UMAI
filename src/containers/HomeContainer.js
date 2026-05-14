@@ -2,30 +2,34 @@ import CardsGrids from "@/components/CardsGrids";
 
 const CUISINE_THEME = {
   Italian: {
-    shadow: "#b45309",
-    badge: "#b45309",
-    variant: "orange",
+    accentColor: "#b45309",
+    kickerClass: "text-[#b45309]",
+    badgeClass: "bg-[#fff5e8] text-[#b45309] border border-[#b4530947]",
+    hoverShadow: "hover:shadow-[0_24px_48px_rgba(180,83,9,0.18)]",
     description:
       "Sabores clasicos de Italia con foco en pastas, salsas y texturas reconfortantes.",
   },
   Mexican: {
-    shadow: "#b91c1c",
-    badge: "#b91c1c",
-    variant: "red",
+    accentColor: "#b91c1c",
+    kickerClass: "text-[#b91c1c]",
+    badgeClass: "bg-[#fff1f1] text-[#b91c1c] border border-[#b91c1c47]",
+    hoverShadow: "hover:shadow-[0_24px_48px_rgba(185,28,28,0.18)]",
     description:
       "Platos intensos con especias, frescura y contrastes tipicos de la cocina mexicana.",
   },
   Asian: {
-    shadow: "#0f766e",
-    badge: "#0f766e",
-    variant: "green",
+    accentColor: "#0f766e",
+    kickerClass: "text-[#0f766e]",
+    badgeClass: "bg-[#ecfeff] text-[#0f766e] border border-[#0f766e4d]",
+    hoverShadow: "hover:shadow-[0_24px_48px_rgba(15,118,110,0.2)]",
     description:
       "Preparaciones aromaticas y equilibradas inspiradas en cocinas del continente asiatico.",
   },
   Global: {
-    shadow: "#475569",
-    badge: "#475569",
-    variant: "default",
+    accentColor: "#7c2d12",
+    kickerClass: "text-[#7c2d12]",
+    badgeClass: "bg-[#fef2f2] text-[#7c2d12] border border-[#7c2d1247]",
+    hoverShadow: "hover:shadow-[0_24px_48px_rgba(124,45,18,0.18)]",
     description:
       "Recetas internacionales para explorar tecnicas y sabores de distintas regiones.",
   },
