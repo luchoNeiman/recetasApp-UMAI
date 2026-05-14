@@ -2,20 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import RecipeActions from "@/components/RecipeActions";
 
-const IMAGE_HEIGHT = {
-  hero: "min-h-[12rem] md:min-h-[16rem]",
-  tall: "min-h-[11rem] md:min-h-[15rem]",
-  wide: "min-h-[10rem] md:min-h-[12rem]",
-  default: "min-h-[10rem] md:min-h-[11rem]",
-};
-
-const RecipeCard = ({ recipe, accentColor, shadowColor, tileType }) => {
+const RecipeCard = ({
+  recipe,
+  accentColor = "#9a3412",
+  hoverShadow = "hover:shadow-[0_24px_48px_rgba(17,24,39,0.14)]",
+}) => {
   return (
     <article
-      className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-black/5 bg-white"
-      style={{ boxShadow: `0 14px 40px -24px ${shadowColor}` }}
+      className={[
+        "bg-white border border-[#22222214] rounded-[1.5rem]",
+        "shadow-[0_20px_40px_rgba(17,24,39,0.08)] overflow-hidden",
+        "transition-all duration-[180ms] hover:-translate-y-1 h-full",
+        hoverShadow,
+        "flex flex-col",
+      ].join(" ")}
     >
-      <div className={`relative w-full ${IMAGE_HEIGHT[tileType] || IMAGE_HEIGHT.default}`}>
+      <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={recipe.image}
           alt={recipe.name}
@@ -31,23 +33,38 @@ const RecipeCard = ({ recipe, accentColor, shadowColor, tileType }) => {
         </span>
       </div>
 
-      <div className="flex grow flex-col gap-4 p-5">
-        <div>
-          <h3 className="line-clamp-2 text-xl font-black leading-tight text-[#7c2d12]">{recipe.name}</h3>
-          <p className="mt-1 text-sm text-[#575757]">
-            {recipe.difficulty} · {recipe.prepTimeMinutes} min · {recipe.servings} porciones
-          </p>
-        </div>
+      {/* Contenido */}
+      <div className="flex grow flex-col gap-3 p-5">
+        <p className="text-gray-500 text-[0.82rem] font-semibold tracking-wider uppercase">
+          {recipe.cuisine} · {recipe.difficulty} · {recipe.prepTimeMinutes} min
+        </p>
 
-        <RecipeActions initialRating={recipe.rating} accentColor={accentColor} />
-
-        <Link
-          href={`/recipe/${recipe.id}`}
-          className="mt-auto rounded-xl px-4 py-2 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#9a3412" }}
+        <h3
+          className="font-black leading-[1.1] text-balance text-[#7c2d12] m-0 line-clamp-2"
+          style={{ fontSize: "clamp(1.1rem,2vw,1.5rem)" }}
         >
-          Ver receta
-        </Link>
+          {recipe.name}
+        </h3>
+
+        {recipe.tags?.length > 0 && (
+          <p className="text-sm text-[#575757] line-clamp-2">
+            {recipe.tags.slice(0, 3).join(" · ")}
+          </p>
+        )}
+
+        <div className="mt-auto flex flex-col gap-3">
+          <RecipeActions
+            initialRating={recipe.rating}
+            accentColor={accentColor}
+          />
+          <Link
+            href={`/recipe/${recipe.id}`}
+            className="rounded-xl px-4 py-2 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#9a3412" }}
+          >
+            Ver receta
+          </Link>
+        </div>
       </div>
     </article>
   );

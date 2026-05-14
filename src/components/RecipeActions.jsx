@@ -41,11 +41,16 @@ const RecipeActions = ({ initialRating, accentColor = "#9a3412" }) => {
         </button>
       </div>
 
-      {showRating && (
-        <p className="text-sm text-gray-600" style={{ color: "#575757" }}>
-          Rating: {initialRating?.toFixed(1) || "N/A"}/5
-        </p>
-      )}
+      <p
+        className={[
+          "min-h-[1.25rem] text-sm transition-opacity duration-200",
+          showRating ? "opacity-100" : "opacity-0",
+        ].join(" ")}
+        style={{ color: "#575757" }}
+        aria-live="polite"
+      >
+        {showRating ? `Rating: ${initialRating?.toFixed(1) || "N/A"}/5` : "\u00A0"}
+      </p>
     </div>
   );
 };

@@ -4,24 +4,28 @@ const CUISINE_THEME = {
   Italian: {
     shadow: "#b45309",
     badge: "#b45309",
+    variant: "orange",
     description:
       "Sabores clasicos de Italia con foco en pastas, salsas y texturas reconfortantes.",
   },
   Mexican: {
     shadow: "#b91c1c",
     badge: "#b91c1c",
+    variant: "red",
     description:
       "Platos intensos con especias, frescura y contrastes tipicos de la cocina mexicana.",
   },
   Asian: {
     shadow: "#0f766e",
     badge: "#0f766e",
+    variant: "green",
     description:
       "Preparaciones aromaticas y equilibradas inspiradas en cocinas del continente asiatico.",
   },
   Global: {
     shadow: "#475569",
     badge: "#475569",
+    variant: "default",
     description:
       "Recetas internacionales para explorar tecnicas y sabores de distintas regiones.",
   },
